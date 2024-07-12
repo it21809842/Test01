@@ -52,8 +52,29 @@ const getById = async (req, res, next) => {
     return res.status(200).json({ user });
 };
 
+//update user detail
+const updateUser = async (req, res, next) => {
+    const id = req.params.id;
+    const { name, gmail, age, address } = req.body;
+
+    let user;
+
+    try {
+        user = await User.findByIdAndUpdate(id, { name, gmail, age, address }, { new: true });
+    } catch (err) {
+        console.log(err);
+    }
+
+    if (!user) {
+        return res.status(404).json({ message: "Unable to update user details" });
+    }
+
+    return res.status(200).json({ user });
+};
+
 module.exports = {
     getAllUsers,
     addUsers,
-    getById
+    getById,
+    updateUser
 };
