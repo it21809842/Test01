@@ -72,9 +72,33 @@ const updateUser = async (req, res, next) => {
     return res.status(200).json({ user });
 };
 
+
+//delete user
+//update user detail
+const deleteUser = async (req, res, next) => {
+    const id = req.params.id;
+    const { name, gmail, age, address } = req.body;
+
+    let user;
+
+    try {
+        user = await User.findByIdAndDelete(id, { name, gmail, age, address }, { new: true });
+    } catch (err) {
+        console.log(err);
+    }
+
+    if (!user) {
+        return res.status(404).json({ message: "Unable to delete user details" });
+    }
+
+    return res.status(200).json({ user });
+};
+
+
 module.exports = {
     getAllUsers,
     addUsers,
     getById,
-    updateUser
+    updateUser,
+    deleteUser
 };

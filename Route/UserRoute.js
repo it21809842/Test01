@@ -10,6 +10,7 @@ router.get("/", UserControler.getAllUsers);
 router.post("/", UserControler.addUsers);
 router.get("/:id", UserControler.getById);
 router.put("/:id", UserControler.updateUser);
+router.delete("/:id", UserControler.deleteUser);
 
 //export
 module.exports = router;
