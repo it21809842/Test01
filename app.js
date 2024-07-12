@@ -1,15 +1,14 @@
-console.log("Bye");
+//console.log("Bye");
 //mongoose.connect("mongodb+srv://wasana:wasana@cluster1.x8uyb9k.mongodb.net/", {
 
 const express = require("express");
 const mongoose = require("mongoose");
+const router = require("./Route/UserRoute");
 
 const app= express();
 
 //middle wear
-app.use("/",(req, res, next) => {
-    res.send("It is working");
-})
+app.use("/users",router)
 
 
 mongoose.connect("mongodb+srv://wasana:wasana@cluster1.x8uyb9k.mongodb.net/", {
